@@ -1,4 +1,4 @@
-#require "pry"
+require "pry"
 class TicTacToe
   
   attr_accessor(:board,:win_combinations)
@@ -8,8 +8,8 @@ class TicTacToe
  
  end
 WIN_COMBINATIONS =[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[6,4,2]]
- def win_combinations(win_combinations)
-    return win_combinations.size  
+ def win_combinations
+    return WIN_COMBINATIONS.size  
  end
 
    
@@ -99,21 +99,26 @@ def turn
    
 
 def won?
+  
  if board.none?{|i| i != " "}
  return false
  end
   WIN_COMBINATIONS.each do |i| 
     first = i[0]
-    secound = i[1]
+    second = i[1]
     third = i[2]
-    if board[first] == "X" && board[secound]== "X" && board[third]== "X"
+    
+    #binding.pry
+    if board[first] == "X" && board[second]== "X" && board[third]== "X"
     return    i
+    
   elsif
-     board[first] == "O" && board[secound]== "O" && board[third]== "O"
+     board[first] == "O" && board[second]== "O" && board[third]== "O"
+    # binding.pry 
      return i
   end
 end
-  
+ 
 
   return false
 end
@@ -143,7 +148,8 @@ def over?
 end
 def winner 
   if won? != false
- return board[won?[1]] 
+    #binding.pry
+ return board[won?[2]] 
  end
 end
 def play
